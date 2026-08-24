@@ -135,7 +135,7 @@ function renderCart() {
     cartList.innerHTML = `
     <li class="cart__empty">
       <h2>장바구니가 비어있습니다.</h2>
-      <a href="../est_fe13_2nd_project/productList">한번 둘러볼까요?</a>
+      <a href="/productList.html">한번 둘러볼까요?</a>
     </li>
   `;
   }
