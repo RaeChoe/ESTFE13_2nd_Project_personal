@@ -1,6 +1,75 @@
-@import "/node_modules/modern-normalize/modern-normalize.css";
-@import url(./base/reset.css);
-@import url(./base/variables.css);
-@import url(./base/utilities.css);
-@import url(./modules/header.css);
-@import url(./modules/footer.css);
+@layer theme, legacy, components, utilities;
+
+/* Tailwind v4 - Preflight 제외 */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* 기존 프로젝트의 reset 유지 */
+@import "/node_modules/modern-normalize/modern-normalize.css" layer(legacy);
+@import url("./base/reset.css") layer(legacy);
+@import url("./base/variables.css") layer(legacy);
+@import url("./base/utilities.css") layer(legacy);
+
+/*
+  기존 header.css / footer.css는 더 이상 import하지 않음.
+  Header / Footer는 Tailwind utility 중심으로 리뉴얼.
+*/
+
+@theme {
+  /* Color */
+  --color-canvas: #f4f1ec;
+  --color-paper: #fbfaf8;
+  --color-ink: #171517;
+  --color-muted: #777174;
+  --color-line: #d9d4d6;
+
+  --color-plum-50: #f7f2f6;
+  --color-plum-100: #eee3ec;
+  --color-plum-200: #dfcedc;
+  --color-plum-300: #c7abc1;
+  --color-plum-400: #a77fa0;
+  --color-plum-500: #875f81;
+  --color-plum-600: #6e4969;
+  --color-plum-700: #583a54;
+  --color-plum-800: #493246;
+  --color-plum-900: #3e2c3c;
+  --color-plum-950: #251722;
+
+  /* Layout */
+  --breakpoint-xs: 30rem;
+
+  /* Font */
+  --font-sans:
+    "Pretendard Variable", Pretendard, system-ui, -apple-system,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+/* 프로젝트 전체에서 사용할 최소 공통 스타일 */
+@layer components {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-canvas);
+  }
+
+  ::selection {
+    color: white;
+    background: var(--color-plum-700);
+  }
+
+  .site-container {
+    width: min(calc(100% - 2rem), 88rem);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 48rem) {
+    .site-container {
+      width: min(calc(100% - 4rem), 88rem);
+    }
+  }
+}
