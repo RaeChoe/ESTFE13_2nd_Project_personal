@@ -1,210 +1,590 @@
+import { updateCartCount } from "../utils/common.js";
+
 const siteHeader = document.querySelector(".site__header");
+
 function renderHeader() {
+  if (!siteHeader) return;
+
   siteHeader.innerHTML = /* HTML */ `
-    <div class="wrapper">
-      <a href="#content" class="skip-link visually-hidden">컨텐츠로 바로가기</a>
-      <nav class="site__nav" aria-labelledby="site-nav-label">
-        <ul class="site__nav__main">
-          <li>
-            <button
-              class="site__nav__toggle"
-              aria-expanded="false">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-              <span class="visually-hidden">메뉴 열기</span>
-            </button>
-          </li>
-          <li>
-            <a href="/" class="site__nav__logo text-headline-small" id="site-nav-label">ROUNZ</a>
-          </li>
-        </ul>
-        <label for="theme" class="visually-hidden">화면 테마 변경</label>
-        <select id="theme">
-          <option value="system" aria-label="시스템 설정 모드" selected>⚙</option>
-          <option value="light" aria-label="라이트 모드">☀</option>
-          <option value="dark" aria-label="다크 모드">☾</option>
-        </select>
-        <ul class="site__nav__actions" role="list">
-          <li>
-            <a href="/login.html">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-              <span class="visually-hidden">프로필</span>
+    <a
+      href="#content"
+      class="
+        fixed left-4 top-4 z-[100]
+        -translate-y-24
+        bg-ink px-5 py-3
+        text-sm font-semibold text-white
+        no-underline
+        transition-transform duration-200
+        focus:translate-y-0
+      "
+    >
+      컨텐츠로 바로가기
+    </a>
+
+    <div
+      class="
+        border-b border-line
+        bg-paper/95
+        backdrop-blur-md
+      "
+    >
+      <div
+        class="
+          site-container
+          flex h-[72px]
+          items-center
+          justify-between
+          lg:h-20
+        "
+      >
+        <!-- 왼쪽 -->
+        <div class="flex items-center gap-6 lg:gap-10">
+          <button
+            type="button"
+            class="
+              site-menu-open
+              flex size-10
+              cursor-pointer
+              items-center justify-center
+              rounded-full
+              border-0
+              bg-transparent
+              text-ink
+              transition-colors
+              hover:bg-plum-50
+              lg:hidden
+            "
+            aria-expanded="false"
+            aria-controls="site-mobile-menu"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            >
+              <path d="M4 7h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 17h16"></path>
+            </svg>
+
+            <span class="visually-hidden">메뉴 열기</span>
+          </button>
+
+          <a
+            href="/"
+            class="
+              text-[1.4rem]
+              font-black
+              tracking-[-0.055em]
+              text-ink
+              no-underline
+              sm:text-2xl
+            "
+          >
+            ROUNZ
+          </a>
+
+          <nav
+            class="hidden lg:block"
+            aria-label="주요 메뉴"
+          >
+            <ul
+              class="
+                m-0 flex
+                list-none
+                items-center
+                gap-7
+                p-0
+              "
+            >
+              <li>
+                <a
+                  href="/productList.html?action=showEyewear"
+                  class="
+                    text-xs font-semibold
+                    tracking-[0.1em]
+                    text-ink
+                    no-underline
+                    transition-colors
+                    hover:text-plum-600
+                  "
+                >
+                  EYEWEAR
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/productList.html?action=showSunglasses"
+                  class="
+                    text-xs font-semibold
+                    tracking-[0.1em]
+                    text-ink
+                    no-underline
+                    transition-colors
+                    hover:text-plum-600
+                  "
+                >
+                  SUNGLASSES
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/productList.html?action=showLens"
+                  class="
+                    text-xs font-semibold
+                    tracking-[0.1em]
+                    text-ink
+                    no-underline
+                    transition-colors
+                    hover:text-plum-600
+                  "
+                >
+                  LENS
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/productList.html?action=showAccessory"
+                  class="
+                    text-xs font-semibold
+                    tracking-[0.1em]
+                    text-ink
+                    no-underline
+                    transition-colors
+                    hover:text-plum-600
+                  "
+                >
+                  ACCESSORY
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- 오른쪽 -->
+        <ul
+          class="
+            m-0 flex
+            list-none
+            items-center
+            gap-1
+            p-0
+            sm:gap-2
+          "
+        >
+          <li class="hidden sm:block">
+            <a
+              href="/productList.html"
+              class="
+                flex size-10
+                items-center justify-center
+                rounded-full
+                text-ink
+                no-underline
+                transition-colors
+                hover:bg-plum-50
+              "
+              aria-label="상품 검색"
+            >
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-3.5-3.5"></path>
+              </svg>
             </a>
           </li>
+
           <li>
-            <a href="/cart.html" class="pile">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-              <span class="visually-hidden">장바구니</span>
-              <span class="cart__counter badge">1</span>
+            <a
+              href="/login.html"
+              class="
+                flex size-10
+                items-center justify-center
+                rounded-full
+                text-ink
+                no-underline
+                transition-colors
+                hover:bg-plum-50
+              "
+              aria-label="로그인"
+            >
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/cart.html"
+              class="
+                relative
+                flex size-10
+                items-center justify-center
+                rounded-full
+                text-ink
+                no-underline
+                transition-colors
+                hover:bg-plum-50
+              "
+              aria-label="장바구니"
+            >
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 8h14l-1 12H6L5 8Z"></path>
+                <path d="M9 8a3 3 0 0 1 6 0"></path>
+              </svg>
+
+              <span
+                class="
+                  cart__counter
+                  absolute right-0 top-0
+                  flex min-w-4
+                  items-center justify-center
+                  rounded-full
+                  bg-plum-700
+                  px-1
+                  text-[10px]
+                  font-bold
+                  leading-4
+                  text-white
+                "
+              >
+                0
+              </span>
             </a>
           </li>
         </ul>
-        <div class="site__nav__content" inert>
-          <button class="site__nav__close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </div>
+    </div>
+
+    <!-- 모바일 메뉴 -->
+    <div
+      id="site-mobile-menu"
+      class="
+        site-mobile-menu
+        invisible
+        fixed inset-0 z-50
+        opacity-0
+        transition-[opacity,visibility]
+        duration-300
+        lg:hidden
+      "
+      aria-hidden="true"
+    >
+      <button
+        type="button"
+        class="
+          site-menu-backdrop
+          absolute inset-0
+          cursor-default
+          border-0
+          bg-black/40
+        "
+        aria-label="메뉴 닫기"
+        tabindex="-1"
+      ></button>
+
+      <div
+        class="
+          site-mobile-panel
+          absolute inset-y-0 left-0
+          flex
+          w-[min(88vw,380px)]
+          -translate-x-full
+          flex-col
+          bg-paper
+          p-6
+          transition-transform
+          duration-300
+          ease-out
+        "
+      >
+        <div class="flex items-center justify-between">
+          <a
+            href="/"
+            class="
+              text-xl
+              font-black
+              tracking-[-0.05em]
+              text-ink
+              no-underline
+            "
+          >
+            ROUNZ
+          </a>
+
+          <button
+            type="button"
+            class="
+              site-menu-close
+              flex size-10
+              cursor-pointer
+              items-center justify-center
+              rounded-full
+              border-0
+              bg-transparent
+              text-ink
+              transition-colors
+              hover:bg-plum-50
+            "
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            >
+              <path d="M6 6l12 12"></path>
+              <path d="M18 6 6 18"></path>
+            </svg>
+
             <span class="visually-hidden">메뉴 닫기</span>
           </button>
-          <ul role="list">
-            <li><a href="/productList.html?action=showSunglasses">선글라스</a></li>
-            <li><a href="/productList.html?action=showLens">렌즈</a></li>
-            <li><a href="/productList.html?action=showAccessory">액세서리</a></li>
-            <li><a href="/productList.html?action=showEyewear">아이웨어</a></li>
-				  </ul>
         </div>
-      </nav>
+
+        <nav
+          class="mt-14"
+          aria-label="모바일 메뉴"
+        >
+          <ul
+            class="
+              m-0
+              list-none
+              p-0
+            "
+          >
+            <li>
+              <a
+                href="/productList.html?action=showEyewear"
+                class="
+                  flex items-center
+                  justify-between
+                  border-b border-line
+                  py-5
+                  text-xl font-medium
+                  tracking-[-0.03em]
+                  text-ink
+                  no-underline
+                "
+              >
+                <span>Eyewear</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/productList.html?action=showSunglasses"
+                class="
+                  flex items-center
+                  justify-between
+                  border-b border-line
+                  py-5
+                  text-xl font-medium
+                  tracking-[-0.03em]
+                  text-ink
+                  no-underline
+                "
+              >
+                <span>Sunglasses</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/productList.html?action=showLens"
+                class="
+                  flex items-center
+                  justify-between
+                  border-b border-line
+                  py-5
+                  text-xl font-medium
+                  tracking-[-0.03em]
+                  text-ink
+                  no-underline
+                "
+              >
+                <span>Lens</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/productList.html?action=showAccessory"
+                class="
+                  flex items-center
+                  justify-between
+                  border-b border-line
+                  py-5
+                  text-xl font-medium
+                  tracking-[-0.03em]
+                  text-ink
+                  no-underline
+                "
+              >
+                <span>Accessory</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div
+          class="
+            mt-auto
+            border-t border-line
+            pt-6
+          "
+        >
+          <p
+            class="
+              m-0
+              text-[0.7rem]
+              uppercase
+              tracking-[0.22em]
+              text-muted
+            "
+          >
+            See yourself differently.
+          </p>
+        </div>
+      </div>
     </div>
   `;
 }
 
-renderHeader();
-function initNav() {
-  const nav = document.querySelector(".site__nav");
-  // nav.classList.add("enhanced");
-  const navButton = document.querySelector(".site__nav__toggle");
-  const navCloseBtn = document.querySelector(".site__nav__close");
-  const navContent = document.querySelector(".site__nav__content");
-  // const isDesktop = window.matchMedia("(min-width: 52em)");
+function initMobileMenu() {
+  const openButton = document.querySelector(".site-menu-open");
+  const closeButton = document.querySelector(".site-menu-close");
+  const backdrop = document.querySelector(".site-menu-backdrop");
+  const menu = document.querySelector(".site-mobile-menu");
+  const panel = document.querySelector(".site-mobile-panel");
   const main = document.querySelector("main");
   const footer = document.querySelector("footer");
-  const siblings = document.querySelectorAll(".wrapper > *:not(nav)");
-  const drawerSiblings = document.querySelectorAll(
-    ".site__nav > *:not(.site__nav__content)",
-  );
 
-  navCloseBtn.addEventListener(
-    "click",
-    () => {
-      hideNav();
-      navButton.focus();
-    },
-    false,
-  );
-
-  document.addEventListener(
-    "keydown",
-    e => {
-      if (
-        navButton.getAttribute("aria-expanded") === "true" &&
-        e.key === "Escape"
-      ) {
-        hideNav();
-        navButton.focus();
-      }
-    },
-    false,
-  );
-
-  navButton.addEventListener("click", showNavigationContent, false);
-
-  function hideNav() {
-    nav.classList.add("closed");
-    navButton.setAttribute("aria-expanded", "false");
-    // dropdowns.forEach(function (dropdown) {
-    // 	dropdown.setAttribute("hidden", "");
-    // 	let btn = dropdown.parentNode.querySelector("button");
-    // 	btn.setAttribute("aria-expanded", "false");
-    // });
-    makeNavInert();
-    removePageInert();
+  if (!openButton || !closeButton || !backdrop || !menu || !panel) {
+    return;
   }
 
-  function makePageInert() {
+  let previousFocusedElement = null;
+
+  function setPageInert(isInert) {
     if (main) {
-      main.setAttribute("inert", "");
+      main.toggleAttribute("inert", isInert);
     }
+
     if (footer) {
-      footer.setAttribute("inert", "");
-    }
-
-    for (let i = 0; i < siblings.length; i++) {
-      siblings[i].setAttribute("inert", "");
-    }
-
-    for (let i = 0; i < drawerSiblings.length; i++) {
-      drawerSiblings[i].setAttribute("inert", "");
+      footer.toggleAttribute("inert", isInert);
     }
   }
 
-  function removePageInert() {
-    if (main) {
-      main.removeAttribute("inert");
-    }
-    if (footer) {
-      footer.removeAttribute("inert");
-    }
+  function openMenu() {
+    previousFocusedElement = document.activeElement;
 
-    for (let i = 0; i < siblings.length; i++) {
-      siblings[i].removeAttribute("inert");
-    }
+    menu.classList.remove("invisible", "opacity-0");
+    menu.classList.add("visible", "opacity-100");
 
-    for (let i = 0; i < drawerSiblings.length; i++) {
-      drawerSiblings[i].removeAttribute("inert");
-    }
+    panel.classList.remove("-translate-x-full");
+    panel.classList.add("translate-x-0");
+
+    menu.setAttribute("aria-hidden", "false");
+    openButton.setAttribute("aria-expanded", "true");
+
+    setPageInert(true);
+
+    document.body.style.overflow = "hidden";
+
+    closeButton.focus();
   }
 
-  function makeNavInert() {
-    navContent.setAttribute("inert", "");
+  function closeMenu() {
+    menu.classList.add("invisible", "opacity-0");
+    menu.classList.remove("visible", "opacity-100");
+
+    panel.classList.add("-translate-x-full");
+    panel.classList.remove("translate-x-0");
+
+    menu.setAttribute("aria-hidden", "true");
+    openButton.setAttribute("aria-expanded", "false");
+
+    setPageInert(false);
+
+    document.body.style.removeProperty("overflow");
+
+    previousFocusedElement?.focus();
   }
 
-  function removeNavInert() {
-    navContent.removeAttribute("inert");
-  }
+  openButton.addEventListener("click", openMenu);
+  closeButton.addEventListener("click", closeMenu);
+  backdrop.addEventListener("click", closeMenu);
 
-  function showNavigationContent() {
-    navButton.setAttribute("aria-expanded", "true");
-    removeNavInert();
-    makePageInert();
-    navCloseBtn.focus();
-  }
+  document.addEventListener("keydown", event => {
+    const isOpen = menu.getAttribute("aria-hidden") === "false";
+
+    if (event.key === "Escape" && isOpen) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (
+      window.innerWidth >= 1024 &&
+      menu.getAttribute("aria-hidden") === "false"
+    ) {
+      closeMenu();
+    }
+  });
 }
 
-initNav();
-
-function restoreColorSchemePreference() {
-  const colorScheme = localStorage.getItem(colorSchemeStorageItemName);
-
-  if (!colorScheme) {
-    // There is no stored preference to restore
-    return;
-  }
-
-  const option = colorSchemeSelectorEl.querySelector(`[value=${colorScheme}]`);
-
-  if (!option) {
-    // The stored preference has no corresponding option in the UI.
-    localStorage.removeItem(colorSchemeStorageItemName);
-    return;
-  }
-
-  if (option.selected) {
-    // The stored preference's corresponding menu option is already selected
-    return;
-  }
-
-  option.selected = true;
-}
-
-/*
- * Store an event target's value in localStorage under colorSchemeStorageItemName
- */
-function storeColorSchemePreference({ target }) {
-  const colorScheme = target.querySelector(":checked").value;
-  localStorage.setItem(colorSchemeStorageItemName, colorScheme);
-}
-
-// The name under which the user's color scheme preference will be stored.
-const colorSchemeStorageItemName = "preferredColorScheme";
-
-// The color scheme preference front-end UI.
-const colorSchemeSelectorEl = document.querySelector("#theme");
-
-if (colorSchemeSelectorEl) {
-  restoreColorSchemePreference();
-
-  // When the user changes their color scheme preference via the UI,
-  // store the new preference.
-  colorSchemeSelectorEl.addEventListener("input", storeColorSchemePreference);
-}
-
-import { updateCartCount } from "../utils/common.js";
-
+renderHeader();
+initMobileMenu();
 updateCartCount();
