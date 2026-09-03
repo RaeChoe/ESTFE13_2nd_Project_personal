@@ -9,7 +9,7 @@ function renderHeader() {
     <a
       href="#content"
       class="
-        fixed left-4 top-4 z-[100]
+        fixed left-4 top-4 z-[120]
         -translate-y-24
         bg-ink px-5 py-3
         text-sm font-semibold text-white
@@ -37,7 +37,7 @@ function renderHeader() {
           lg:h-20
         "
       >
-        <!-- 왼쪽 -->
+        <!-- LEFT -->
         <div class="flex items-center gap-6 lg:gap-10">
           <button
             type="button"
@@ -90,6 +90,7 @@ function renderHeader() {
             ROUNZ
           </a>
 
+          <!-- DESKTOP NAV -->
           <nav
             class="hidden lg:block"
             aria-label="주요 메뉴"
@@ -103,11 +104,176 @@ function renderHeader() {
                 p-0
               "
             >
+              <!-- COLLECTION -->
+              <li class="site-collection relative">
+                <button
+                  type="button"
+                  class="
+                    site-collection-button
+                    flex
+                    cursor-pointer
+                    items-center
+                    gap-1.5
+                    border-0
+                    bg-transparent
+                    p-0
+                    text-xs
+                    font-semibold
+                    tracking-[0.1em]
+                    text-ink
+                    transition-colors
+                    hover:text-plum-600
+                  "
+                  aria-expanded="false"
+                  aria-controls="site-collection-menu"
+                >
+                  COLLECTION
+
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="
+                      site-collection-icon
+                      transition-transform
+                      duration-200
+                    "
+                  >
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                </button>
+
+                <div
+                  id="site-collection-menu"
+                  class="
+                    site-collection-menu
+                    invisible
+                    absolute
+                    left-0 top-[calc(100%+1.25rem)]
+                    z-50
+                    min-w-[220px]
+                    translate-y-2
+                    border border-line
+                    bg-paper
+                    p-2
+                    opacity-0
+                    shadow-[0_16px_40px_rgb(23_21_23/0.08)]
+                    transition-all
+                    duration-200
+                  "
+                  aria-hidden="true"
+                >
+                  <a
+                    href="/productList.html"
+                    class="
+                      flex
+                      items-center
+                      justify-between
+                      px-4 py-3
+                      text-sm
+                      font-medium
+                      text-ink
+                      no-underline
+                      transition-colors
+                      hover:bg-plum-50
+                    "
+                  >
+                    <span>All collection</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <a
+                    href="/productList.html?action=showEyewear"
+                    class="
+                      flex
+                      items-center
+                      justify-between
+                      border-t border-line
+                      px-4 py-3
+                      text-sm
+                      text-ink
+                      no-underline
+                      transition-colors
+                      hover:bg-plum-50
+                    "
+                  >
+                    <span>Eyewear</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <a
+                    href="/productList.html?action=showSunglasses"
+                    class="
+                      flex
+                      items-center
+                      justify-between
+                      border-t border-line
+                      px-4 py-3
+                      text-sm
+                      text-ink
+                      no-underline
+                      transition-colors
+                      hover:bg-plum-50
+                    "
+                  >
+                    <span>Sunglasses</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <a
+                    href="/productList.html?action=showLens"
+                    class="
+                      flex
+                      items-center
+                      justify-between
+                      border-t border-line
+                      px-4 py-3
+                      text-sm
+                      text-ink
+                      no-underline
+                      transition-colors
+                      hover:bg-plum-50
+                    "
+                  >
+                    <span>Lens</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <a
+                    href="/productList.html?action=showAccessory"
+                    class="
+                      flex
+                      items-center
+                      justify-between
+                      border-t border-line
+                      px-4 py-3
+                      text-sm
+                      text-ink
+                      no-underline
+                      transition-colors
+                      hover:bg-plum-50
+                    "
+                  >
+                    <span>Accessory</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </li>
+
+              <!-- NEW -->
               <li>
                 <a
-                  href="/productList.html?action=showEyewear"
+                  href="/productList.html?badge=NEW"
                   class="
-                    text-xs font-semibold
+                    text-xs
+                    font-semibold
                     tracking-[0.1em]
                     text-ink
                     no-underline
@@ -115,15 +281,17 @@ function renderHeader() {
                     hover:text-plum-600
                   "
                 >
-                  EYEWEAR
+                  NEW
                 </a>
               </li>
 
+              <!-- BEST -->
               <li>
                 <a
-                  href="/productList.html?action=showSunglasses"
+                  href="/productList.html?badge=BEST"
                   class="
-                    text-xs font-semibold
+                    text-xs
+                    font-semibold
                     tracking-[0.1em]
                     text-ink
                     no-underline
@@ -131,15 +299,17 @@ function renderHeader() {
                     hover:text-plum-600
                   "
                 >
-                  SUNGLASSES
+                  BEST
                 </a>
               </li>
 
+              <!-- EDITORIAL -->
               <li>
                 <a
-                  href="/productList.html?action=showLens"
+                  href="/#editorial"
                   class="
-                    text-xs font-semibold
+                    text-xs
+                    font-semibold
                     tracking-[0.1em]
                     text-ink
                     no-underline
@@ -147,15 +317,17 @@ function renderHeader() {
                     hover:text-plum-600
                   "
                 >
-                  LENS
+                  EDITORIAL
                 </a>
               </li>
 
+              <!-- GUIDE -->
               <li>
                 <a
-                  href="/productList.html?action=showAccessory"
+                  href="/#support"
                   class="
-                    text-xs font-semibold
+                    text-xs
+                    font-semibold
                     tracking-[0.1em]
                     text-ink
                     no-underline
@@ -163,14 +335,14 @@ function renderHeader() {
                     hover:text-plum-600
                   "
                 >
-                  ACCESSORY
+                  GUIDE
                 </a>
               </li>
             </ul>
           </nav>
         </div>
 
-        <!-- 오른쪽 -->
+        <!-- RIGHT -->
         <ul
           class="
             m-0 flex
@@ -299,7 +471,7 @@ function renderHeader() {
       </div>
     </div>
 
-    <!-- 모바일 메뉴 -->
+    <!-- MOBILE MENU -->
     <div
       id="site-mobile-menu"
       class="
@@ -390,88 +562,220 @@ function renderHeader() {
         </div>
 
         <nav
-          class="mt-14"
+          class="mt-12"
           aria-label="모바일 메뉴"
         >
-          <ul
-            class="
-              m-0
-              list-none
-              p-0
-            "
-          >
+          <ul class="m-0 list-none p-0">
+            <!-- COLLECTION -->
+            <li>
+              <button
+                type="button"
+                class="
+                  site-mobile-collection-button
+                  flex w-full
+                  cursor-pointer
+                  items-center
+                  justify-between
+                  border-0
+                  border-b border-line
+                  bg-transparent
+                  py-5
+                  text-left
+                  text-xl
+                  font-medium
+                  tracking-[-0.03em]
+                  text-ink
+                "
+                aria-expanded="true"
+                aria-controls="site-mobile-collection-menu"
+              >
+                <span>Collection</span>
+
+                <span
+                  class="
+                    site-mobile-collection-icon
+                    rotate-45
+                    text-xl
+                    font-light
+                    transition-transform
+                  "
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+
+              <div
+                id="site-mobile-collection-menu"
+                class="
+                  site-mobile-collection-menu
+                  border-b border-line
+                  bg-plum-50/50
+                  px-4 py-2
+                "
+              >
+                <a
+                  href="/productList.html"
+                  class="
+                    flex
+                    items-center
+                    justify-between
+                    py-3
+                    text-sm
+                    text-ink
+                    no-underline
+                  "
+                >
+                  <span>All collection</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="/productList.html?action=showEyewear"
+                  class="
+                    flex
+                    items-center
+                    justify-between
+                    py-3
+                    text-sm
+                    text-ink
+                    no-underline
+                  "
+                >
+                  <span>Eyewear</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="/productList.html?action=showSunglasses"
+                  class="
+                    flex
+                    items-center
+                    justify-between
+                    py-3
+                    text-sm
+                    text-ink
+                    no-underline
+                  "
+                >
+                  <span>Sunglasses</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="/productList.html?action=showLens"
+                  class="
+                    flex
+                    items-center
+                    justify-between
+                    py-3
+                    text-sm
+                    text-ink
+                    no-underline
+                  "
+                >
+                  <span>Lens</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="/productList.html?action=showAccessory"
+                  class="
+                    flex
+                    items-center
+                    justify-between
+                    py-3
+                    text-sm
+                    text-ink
+                    no-underline
+                  "
+                >
+                  <span>Accessory</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </li>
+
             <li>
               <a
-                href="/productList.html?action=showEyewear"
+                href="/productList.html?badge=NEW"
                 class="
-                  flex items-center
+                  flex
+                  items-center
                   justify-between
                   border-b border-line
                   py-5
-                  text-xl font-medium
+                  text-xl
+                  font-medium
                   tracking-[-0.03em]
                   text-ink
                   no-underline
                 "
               >
-                <span>Eyewear</span>
+                <span>New</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </li>
 
             <li>
               <a
-                href="/productList.html?action=showSunglasses"
+                href="/productList.html?badge=BEST"
                 class="
-                  flex items-center
+                  flex
+                  items-center
                   justify-between
                   border-b border-line
                   py-5
-                  text-xl font-medium
+                  text-xl
+                  font-medium
                   tracking-[-0.03em]
                   text-ink
                   no-underline
                 "
               >
-                <span>Sunglasses</span>
+                <span>Best</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </li>
 
             <li>
               <a
-                href="/productList.html?action=showLens"
+                href="/#editorial"
                 class="
-                  flex items-center
+                  flex
+                  items-center
                   justify-between
                   border-b border-line
                   py-5
-                  text-xl font-medium
+                  text-xl
+                  font-medium
                   tracking-[-0.03em]
                   text-ink
                   no-underline
                 "
               >
-                <span>Lens</span>
+                <span>Editorial</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </li>
 
             <li>
               <a
-                href="/productList.html?action=showAccessory"
+                href="/#support"
                 class="
-                  flex items-center
+                  flex
+                  items-center
                   justify-between
                   border-b border-line
                   py-5
-                  text-xl font-medium
+                  text-xl
+                  font-medium
                   tracking-[-0.03em]
                   text-ink
                   no-underline
                 "
               >
-                <span>Accessory</span>
+                <span>Guide</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </li>
@@ -502,6 +806,118 @@ function renderHeader() {
   `;
 }
 
+/* --------------------------------
+ * Desktop Collection Menu
+ * -------------------------------- */
+
+function initCollectionMenu() {
+  const wrapper = document.querySelector(".site-collection");
+  const button = document.querySelector(".site-collection-button");
+  const menu = document.querySelector(".site-collection-menu");
+  const icon = document.querySelector(".site-collection-icon");
+
+  if (!wrapper || !button || !menu || !icon) return;
+
+  let closeTimer;
+
+  function openCollectionMenu() {
+    window.clearTimeout(closeTimer);
+
+    menu.classList.remove("invisible", "opacity-0", "translate-y-2");
+
+    menu.classList.add("visible", "opacity-100", "translate-y-0");
+
+    icon.classList.add("rotate-180");
+
+    menu.setAttribute("aria-hidden", "false");
+    button.setAttribute("aria-expanded", "true");
+  }
+
+  function closeCollectionMenu() {
+    menu.classList.add("invisible", "opacity-0", "translate-y-2");
+
+    menu.classList.remove("visible", "opacity-100", "translate-y-0");
+
+    icon.classList.remove("rotate-180");
+
+    menu.setAttribute("aria-hidden", "true");
+    button.setAttribute("aria-expanded", "false");
+  }
+
+  function scheduleClose() {
+    closeTimer = window.setTimeout(closeCollectionMenu, 120);
+  }
+
+  wrapper.addEventListener("mouseenter", openCollectionMenu);
+
+  wrapper.addEventListener("mouseleave", scheduleClose);
+
+  button.addEventListener("click", () => {
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      closeCollectionMenu();
+      return;
+    }
+
+    openCollectionMenu();
+  });
+
+  button.addEventListener("keydown", event => {
+    if (
+      event.key === "ArrowDown" ||
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+
+      openCollectionMenu();
+
+      menu.querySelector("a")?.focus();
+    }
+  });
+
+  menu.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeCollectionMenu();
+      button.focus();
+    }
+  });
+
+  document.addEventListener("click", event => {
+    if (!wrapper.contains(event.target)) {
+      closeCollectionMenu();
+    }
+  });
+}
+
+/* --------------------------------
+ * Mobile Collection Accordion
+ * -------------------------------- */
+
+function initMobileCollection() {
+  const button = document.querySelector(".site-mobile-collection-button");
+
+  const menu = document.querySelector(".site-mobile-collection-menu");
+
+  const icon = document.querySelector(".site-mobile-collection-icon");
+
+  if (!button || !menu || !icon) return;
+
+  button.addEventListener("click", () => {
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+
+    button.setAttribute("aria-expanded", String(!isOpen));
+
+    menu.classList.toggle("hidden", isOpen);
+    icon.classList.toggle("rotate-45", !isOpen);
+  });
+}
+
+/* --------------------------------
+ * Mobile Menu
+ * -------------------------------- */
+
 function initMobileMenu() {
   const openButton = document.querySelector(".site-menu-open");
   const closeButton = document.querySelector(".site-menu-close");
@@ -531,6 +947,7 @@ function initMobileMenu() {
     previousFocusedElement = document.activeElement;
 
     menu.classList.remove("invisible", "opacity-0");
+
     menu.classList.add("visible", "opacity-100");
 
     panel.classList.remove("-translate-x-full");
@@ -548,6 +965,7 @@ function initMobileMenu() {
 
   function closeMenu() {
     menu.classList.add("invisible", "opacity-0");
+
     menu.classList.remove("visible", "opacity-100");
 
     panel.classList.add("-translate-x-full");
@@ -585,6 +1003,14 @@ function initMobileMenu() {
   });
 }
 
+/* --------------------------------
+ * Initialize
+ * -------------------------------- */
+
 renderHeader();
+
+initCollectionMenu();
+initMobileCollection();
 initMobileMenu();
+
 updateCartCount();

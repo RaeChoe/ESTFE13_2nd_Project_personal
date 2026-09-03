@@ -52,9 +52,32 @@
 
   body {
     min-width: 320px;
+    margin: 0;
     font-family: var(--font-sans);
     color: var(--color-ink);
     background: var(--color-canvas);
+  }
+
+  /*
+    Header
+    실제 header.js 내부 높이:
+    mobile: 72px
+    desktop: 80px
+  */
+  .site__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  /*
+    fixed header가 문서 흐름에서 빠지므로
+    main에 header 높이만큼 공간 확보
+  */
+  main {
+    padding-top: 72px;
   }
 
   ::selection {
@@ -70,6 +93,12 @@
   @media (min-width: 48rem) {
     .site-container {
       width: min(calc(100% - 4rem), 88rem);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    main {
+      padding-top: 80px;
     }
   }
 }
