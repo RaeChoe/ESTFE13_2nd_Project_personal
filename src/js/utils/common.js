@@ -28,7 +28,6 @@ export function updateCartCount() {
 
 //장바구니 버튼 클릭시 장바구니 추가
 export function addToCart(product, qty = 1) {
-  console.log(qty);
   if (!product) return;
   const cart = readCart();
   //이미 담긴 상품 확인

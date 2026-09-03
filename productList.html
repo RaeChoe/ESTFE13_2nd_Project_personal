@@ -1,245 +1,483 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROUNZ — 세상을 다르게 보는 방법</title>
-    <meta name="description" content="ROUNZ — 세상을 다르게 보는 방법">
+
+    <title>Collection — ROUNZ</title>
+
+    <meta
+      name="description"
+      content="ROUNZ의 다양한 아이웨어 컬렉션을 만나보세요."
+    >
+
     <link rel="icon" href="/favicon.ico" sizes="any">
+
     <script type="module" src="./src/js/pages/productList.js"></script>
   </head>
+
   <body>
     <header class="site__header"></header>
 
     <main id="content">
-      <section class="product-intro">
-        <h1 class="text-title-large">Our Collection</h1>
-        <p class="text-body-medium text-opacity">
-          Discover 10 premium eyewear options
-        </p>
-      </section>
-      <button type="button" class="filter-button text-display-small">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="44"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-funnel-icon lucide-funnel"
+      <!-- COLLECTION INTRO -->
+      <section class="site-container pt-14 sm:pt-20 lg:pt-24">
+        <div
+          class="
+            border-b border-line
+            pb-12
+            sm:pb-16
+          "
         >
-          <path
-            d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"
-          />
-        </svg>Filter
-      </button>
+          <p
+            class="
+              m-0
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.22em]
+              text-muted
+            "
+          >
+            ROUNZ / COLLECTION
+          </p>
 
-      <!-- Filter Panel -->
-      <div class="filter-panel hidden">
-        <div class="filter-panel__header">
-          <h2 class="filter-panel__title">Filter</h2>
+          <div
+            class="
+              mt-5
+              flex flex-col
+              gap-8
+              lg:flex-row
+              lg:items-end
+              lg:justify-between
+            "
+          >
+            <div>
+              <h1
+                class="
+                  m-0
+                  text-[clamp(3rem,7vw,6.5rem)]
+                  font-medium
+                  leading-[0.9]
+                  tracking-[-0.065em]
+                "
+              >
+                Find your
+                <br>
+                <span class="text-plum-600">perspective.</span>
+              </h1>
+            </div>
+
+            <p
+              class="
+                m-0
+                max-w-md
+                text-sm
+                leading-7
+                text-muted
+                sm:text-base
+              "
+            >
+              얼굴과 스타일에 자연스럽게 어울리는 프레임을 찾아보세요.
+              카테고리와 브랜드, 컬러를 기준으로 원하는 제품을 탐색할 수
+              있습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT AREA -->
+      <section class="site-container py-10 sm:py-14 lg:py-16">
+        <!-- TOP TOOLBAR -->
+        <div
+          class="
+            flex
+            flex-wrap
+            items-center
+            justify-between
+            gap-4
+            border-b border-line
+            pb-5
+          "
+        >
+          <div>
+            <p
+              class="
+                product-result-count
+                m-0
+                text-sm
+                font-medium
+                text-ink
+              "
+              aria-live="polite"
+            >
+              0 products
+            </p>
+
+            <p
+              class="
+                product-filter-summary
+                mb-0 mt-1
+                hidden
+                text-xs
+                text-muted
+              "
+            ></p>
+          </div>
+
           <button
             type="button"
-            class="filter-panel__close-button"
-            aria-label="필터 닫기"
+            class="
+              filter-button
+              inline-flex
+              cursor-pointer
+              items-center
+              gap-2
+              border border-line
+              bg-transparent
+              px-4 py-2.5
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.12em]
+              text-ink
+              transition-colors
+              hover:border-ink
+              lg:hidden
+            "
+            aria-expanded="false"
+            aria-controls="product-filter-panel"
           >
             <svg
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.7"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-x-icon lucide-x"
             >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
+              <path
+                d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"
+              />
             </svg>
+            Filter
+
+            <span
+              class="
+                active-filter-count
+                hidden
+                min-w-5
+                rounded-full
+                bg-plum-700
+                px-1.5 py-0.5
+                text-center
+                text-[0.65rem]
+                text-white
+              "
+            >
+              0
+            </span>
           </button>
         </div>
 
-        <div class="filter-panel__content">
-          <!-- SEARCH Section -->
-          <div class="filter-group">
-            <h3 class="filter-group__title">SEARCH</h3>
-            <div class="search-input-wrapper">
-              <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="search-icon lucide lucide-search"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Search products..."
-              >
-            </div>
-          </div>
+        <!-- MOBILE FILTER BACKDROP -->
+        <button
+          type="button"
+          class="filter-backdrop"
+          aria-label="필터 닫기"
+          tabindex="-1"
+        ></button>
 
-          <!-- CATEGORY Section -->
-          <div class="filter-group">
-            <h4 class="filter-group__title">CATEGORY</h4>
-            <div id="category-filter" class="filter-group__options">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="category" value="all" checked>
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="-4 -4 39 39"
-                  aria-hidden="true"
-                  focusable="false"
+        <div
+          class="
+            mt-8
+            grid
+            gap-10
+            lg:grid-cols-[15.5rem_minmax(0,1fr)]
+            lg:gap-12
+          "
+        >
+          <!-- FILTER -->
+          <aside
+            id="product-filter-panel"
+            class="filter-panel"
+            aria-label="상품 필터"
+          >
+            <div class="filter-panel__inner">
+              <div
+                class="
+                  filter-panel__header
+                  flex
+                  items-center
+                  justify-between
+                  border-b border-line
+                  pb-5
+                  lg:hidden
+                "
+              >
+                <div>
+                  <p
+                    class="
+                      m-0
+                      text-[0.65rem]
+                      font-semibold
+                      uppercase
+                      tracking-[0.18em]
+                      text-muted
+                    "
+                  >
+                    Refine
+                  </p>
+
+                  <h2
+                    class="
+                      mb-0 mt-1
+                      text-xl
+                      font-medium
+                      tracking-[-0.03em]
+                    "
+                  >
+                    Filter
+                  </h2>
+                </div>
+
+                <button
+                  type="button"
+                  class="
+                    filter-panel__close-button
+                    flex size-10
+                    cursor-pointer
+                    items-center
+                    justify-center
+                    rounded-full
+                    border border-line
+                    bg-transparent
+                    text-ink
+                  "
+                  aria-label="필터 닫기"
                 >
-                  <rect
-                    class="checkbox__background"
-                    width="35"
-                    height="35"
-                    x="-2"
-                    y="-2"
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
                     stroke="currentColor"
-                    fill="none"
-                    stroke-width="3"
-                    rx="6"
-                    ry="6"
-                  ></rect>
-                  <polyline
-                    class="checkbox__checkmark"
-                    points="4,14 12,23 28,5"
-                    stroke="transparent"
-                    stroke-width="4"
-                    fill="none"
-                  ></polyline>
-                </svg>
-                <span>전체</span>
-              </label>
-            </div>
-            <h4 class="filter-group__title">BRAND</h4>
-            <div id="brand-filter" class="filter-group__options">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="category" value="all" checked>
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="-4 -4 39 39"
-                  aria-hidden="true"
-                  focusable="false"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  >
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="filter-panel__content">
+                <!-- SEARCH -->
+                <section class="filter-section">
+                  <h3 class="filter-section__title">Search</h3>
+
+                  <label class="search-input-wrapper">
+                    <span class="sr-only"> 상품 검색 </span>
+
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="search-icon"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+
+                    <input
+                      type="search"
+                      class="search-input"
+                      placeholder="제품 또는 브랜드 검색"
+                      autocomplete="off"
+                    >
+                  </label>
+                </section>
+
+                <!-- CATEGORY -->
+                <section class="filter-section">
+                  <h3 class="filter-section__title">Category</h3>
+
+                  <div id="category-filter" class="filter-options"></div>
+                </section>
+
+                <!-- BRAND -->
+                <section class="filter-section">
+                  <h3 class="filter-section__title">Brand</h3>
+
+                  <div
+                    id="brand-filter"
+                    class="
+                      filter-options
+                      filter-options--scroll
+                    "
+                  ></div>
+                </section>
+
+                <!-- COLOR -->
+                <section class="filter-section">
+                  <h3 class="filter-section__title">Color</h3>
+
+                  <div id="color-filter" class="filter-options"></div>
+                </section>
+
+                <!-- PRICE -->
+                <section class="filter-section">
+                  <h3 class="filter-section__title">Price</h3>
+
+                  <div id="price-filter" class="filter-options"></div>
+                </section>
+
+                <button
+                  type="button"
+                  class="
+                    filter-reset-button
+                    w-full
+                    cursor-pointer
+                    border border-line
+                    bg-transparent
+                    px-4 py-3
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.12em]
+                    text-muted
+                    transition-colors
+                    hover:border-ink
+                    hover:text-ink
+                  "
                 >
-                  <rect
-                    class="checkbox__background"
-                    width="35"
-                    height="35"
-                    x="-2"
-                    y="-2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-width="3"
-                    rx="6"
-                    ry="6"
-                  ></rect>
-                  <polyline
-                    class="checkbox__checkmark"
-                    points="4,14 12,23 28,5"
-                    stroke="transparent"
-                    stroke-width="4"
-                    fill="none"
-                  ></polyline>
-                </svg>
-                <span>전체</span>
-              </label>
+                  Reset filters
+                </button>
+              </div>
             </div>
-            <h4 class="filter-group__title">COLOR</h4>
-            <div id="color-filter" class="filter-group__options">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="category" value="all" checked>
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="-4 -4 39 39"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <rect
-                    class="checkbox__background"
-                    width="35"
-                    height="35"
-                    x="-2"
-                    y="-2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-width="3"
-                    rx="6"
-                    ry="6"
-                  ></rect>
-                  <polyline
-                    class="checkbox__checkmark"
-                    points="4,14 12,23 28,5"
-                    stroke="transparent"
-                    stroke-width="4"
-                    fill="none"
-                  ></polyline>
-                </svg>
-                <span>전체</span>
-              </label>
+          </aside>
+
+          <!-- PRODUCTS -->
+          <div class="min-w-0">
+            <div
+              class="
+                active-filter-list
+                mb-8
+                hidden
+                flex-wrap
+                gap-2
+              "
+              aria-label="적용된 필터"
+            ></div>
+
+            <div
+              class="
+                product-grid
+                grid
+                grid-cols-2
+                gap-x-4
+                gap-y-10
+                sm:gap-x-5
+                md:grid-cols-3
+                lg:grid-cols-3
+                lg:gap-x-6
+                lg:gap-y-14
+              "
+            ></div>
+
+            <div
+              class="
+                product-empty
+                hidden
+                border-y border-line
+                py-24
+                text-center
+              "
+            >
+              <p
+                class="
+                  m-0
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.18em]
+                  text-muted
+                "
+              >
+                No results
+              </p>
+
+              <h2
+                class="
+                  mb-0 mt-4
+                  text-2xl
+                  font-medium
+                  tracking-[-0.04em]
+                "
+              >
+                조건에 맞는 상품이 없습니다.
+              </h2>
+
+              <p
+                class="
+                  mx-auto mb-0 mt-3
+                  max-w-sm
+                  text-sm
+                  leading-6
+                  text-muted
+                "
+              >
+                검색어 또는 필터 조건을 변경한 뒤 다시 확인해보세요.
+              </p>
+
+              <button
+                type="button"
+                class="
+                  product-empty-reset
+                  mt-7
+                  cursor-pointer
+                  border-0
+                  bg-ink
+                  px-6 py-3
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.12em]
+                  text-white
+                "
+              >
+                Reset filters
+              </button>
             </div>
-            <h4 class="filter-group__title">PRICE RANGE</h4>
-            <div id="Price-filter" class="filter-group__options">
-              <label class="custom-checkbox">
-                <input type="checkbox" name="category" value="all" checked>
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="-4 -4 39 39"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <rect
-                    class="checkbox__background"
-                    width="35"
-                    height="35"
-                    x="-2"
-                    y="-2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-width="3"
-                    rx="6"
-                    ry="6"
-                  ></rect>
-                  <polyline
-                    class="checkbox__checkmark"
-                    points="4,14 12,23 28,5"
-                    stroke="transparent"
-                    stroke-width="4"
-                    fill="none"
-                  ></polyline>
-                </svg>
-                <span>전체</span>
-              </label>
-            </div>
+
+            <nav
+              class="
+                pagination
+                mt-16
+                flex
+                items-center
+                justify-center
+                gap-1
+                sm:mt-20
+              "
+              aria-label="상품 페이지"
+            ></nav>
           </div>
         </div>
-      </div>
-
-      <div class="grid"></div>
-
-      <nav class="pagination" aria-label="페이지"></nav>
+      </section>
     </main>
 
     <footer class="site__footer"></footer>
