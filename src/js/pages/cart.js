@@ -36,10 +36,6 @@ function saveCartItems(items) {
   writeCart(items);
 }
 
-function getProductById(id) {
-  return products.find(product => product.id === id) ?? null;
-}
-
 /* ========================================
  * Selection
  * ====================================== */

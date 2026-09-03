@@ -1,5 +1,5 @@
 import "../../css/style.css";
-import "../../css/login.css";
+import "../../css/pages/auth.css";
 
 import "../modules/header.js";
 import "../modules/footer.js";

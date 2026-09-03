@@ -1,19 +1,4 @@
-@layer theme, legacy, components, utilities;
-
-/* Tailwind v4 - Preflight 제외 */
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
-
-/* 기존 프로젝트의 reset 유지 */
-@import "/node_modules/modern-normalize/modern-normalize.css" layer(legacy);
-@import url("./base/reset.css") layer(legacy);
-@import url("./base/variables.css") layer(legacy);
-@import url("./base/utilities.css") layer(legacy);
-
-/*
-  기존 header.css / footer.css는 더 이상 import하지 않음.
-  Header / Footer는 Tailwind utility 중심으로 리뉴얼.
-*/
+@import "tailwindcss";
 
 @theme {
   /* Color */
@@ -44,23 +29,27 @@
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
-/* 프로젝트 전체에서 사용할 최소 공통 스타일 */
-@layer components {
+@layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
     min-width: 320px;
-    margin: 0;
     font-family: var(--font-sans);
     color: var(--color-ink);
     background: var(--color-canvas);
   }
 
+  ::selection {
+    color: white;
+    background: var(--color-plum-700);
+  }
+}
+
+@layer components {
   /*
-    Header
-    실제 header.js 내부 높이:
+    공통 Header
     mobile: 72px
     desktop: 80px
   */
@@ -80,11 +69,9 @@
     padding-top: 72px;
   }
 
-  ::selection {
-    color: white;
-    background: var(--color-plum-700);
-  }
-
+  /*
+    공통 콘텐츠 최대 너비
+  */
   .site-container {
     width: min(calc(100% - 2rem), 88rem);
     margin-inline: auto;
