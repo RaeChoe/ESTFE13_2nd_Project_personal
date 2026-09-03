@@ -44,6 +44,7 @@ let selectedCategories = [];
 let selectedBrands = [];
 let selectedColors = [];
 let selectedPrices = [];
+let selectedBadge = "";
 
 let currentPage = 1;
 let countPerPage = 6;
@@ -143,6 +144,29 @@ function scrollToProducts() {
     behavior: reducedMotion ? "auto" : "smooth",
     block: "start",
   });
+}
+
+/* --------------------------------
+ * URL Badge
+ * -------------------------------- */
+
+function applyBadgeFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const badge = urlParams.get("badge");
+
+  if (!badge) {
+    selectedBadge = "";
+    return;
+  }
+
+  const normalizedBadge = badge.toUpperCase();
+
+  if (!["NEW", "BEST"].includes(normalizedBadge)) {
+    selectedBadge = "";
+    return;
+  }
+
+  selectedBadge = normalizedBadge;
 }
 
 /* --------------------------------
@@ -416,6 +440,7 @@ function renderActiveFilters() {
   activeFilterList.classList.add("flex");
 
   activeFilterCount.textContent = String(activeFilters.length);
+
   activeFilterCount.classList.remove("hidden");
 }
 
@@ -483,6 +508,7 @@ function resetFilters() {
   selectedBrands = [];
   selectedColors = [];
   selectedPrices = [];
+  selectedBadge = "";
 
   [categoryFilter, brandFilter, colorFilter, priceFilter].forEach(container => {
     if (!container) return;
@@ -496,6 +522,17 @@ function resetFilters() {
     searchInput.value = "";
   }
 
+  const url = new URL(window.location.href);
+
+  url.searchParams.delete("badge");
+  url.searchParams.delete("action");
+
+  window.history.replaceState(
+    {},
+    "",
+    `${url.pathname}${url.search}${url.hash}`,
+  );
+
   currentPage = 1;
 
   applyFilter();
@@ -507,6 +544,12 @@ function resetFilters() {
 
 function applyFilter() {
   let result = [...products];
+
+  if (selectedBadge) {
+    result = result.filter(
+      product => product.badge?.toUpperCase() === selectedBadge,
+    );
+  }
 
   if (selectedCategories.length > 0) {
     result = result.filter(product =>
@@ -758,6 +801,7 @@ function renderProducts() {
   if (filteredData.length === 0) {
     productGrid.classList.add("hidden");
     productEmpty.classList.remove("hidden");
+
     return;
   }
 
@@ -790,13 +834,18 @@ function renderResultCount() {
 
   if (!filterSummary) return;
 
-  if (totalFilters === 0 && !searchTerm) {
+  if (totalFilters === 0 && !searchTerm && !selectedBadge) {
     filterSummary.classList.add("hidden");
     filterSummary.textContent = "";
+
     return;
   }
 
   const summaryParts = [];
+
+  if (selectedBadge) {
+    summaryParts.push(`${selectedBadge} COLLECTION`);
+  }
 
   if (totalFilters > 0) {
     summaryParts.push(`${totalFilters}개 필터 적용`);
@@ -914,11 +963,13 @@ function updateCountPerPage() {
 
   if (width >= 1024) {
     countPerPage = 9;
+
     return;
   }
 
   if (width >= 768) {
     countPerPage = 6;
+
     return;
   }
 
@@ -1067,16 +1118,22 @@ function init() {
   filteredData = [...products];
 
   /*
-   * Header / Main Category 링크에서 전달한
-   * action query를 기존 방식 그대로 적용한다.
+   * Header의 NEW / BEST 링크에서 전달되는
+   * badge query를 먼저 읽는다.
+   */
+  applyBadgeFromUrl();
+
+  /*
+   * 기존 Header / Main Category 링크에서 전달되는
+   * action query 처리.
    */
   applyUrlFilter();
 
   /*
-   * URL 필터가 없는 경우에는 아직 applyFilter가
-   * 실행되지 않았으므로 최초 렌더링한다.
+   * badge / category / 기타 필터 조건을
+   * 한 번에 적용한다.
    */
-  renderAll();
+  applyFilter();
 
   updateCartCount();
 }
