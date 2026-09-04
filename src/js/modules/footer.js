@@ -158,45 +158,60 @@ function renderFooter() {
             "
           >
             <li>
-              <a
-                href="#"
+              <button
+                type="button"
                 class="
+                  footer-support-button
+                  cursor-pointer
+                  border-0
+                  bg-transparent
+                  p-0
+                  text-sm
                   text-white/70
-                  no-underline
                   transition-colors
                   hover:text-white
                 "
               >
                 회사소개
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                href="#"
+              <button
+                type="button"
                 class="
+                  footer-support-button
+                  cursor-pointer
+                  border-0
+                  bg-transparent
+                  p-0
+                  text-sm
                   text-white/70
-                  no-underline
                   transition-colors
                   hover:text-white
                 "
               >
                 이용약관
-              </a>
+              </button>
             </li>
 
             <li>
-              <a
-                href="#"
+              <button
+                type="button"
                 class="
+                  footer-support-button
+                  cursor-pointer
+                  border-0
+                  bg-transparent
+                  p-0
+                  text-sm
                   text-white/70
-                  no-underline
                   transition-colors
                   hover:text-white
                 "
               >
                 개인정보처리방침
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -238,4 +253,15 @@ function renderFooter() {
   `;
 }
 
+function initFooterSupportButtons() {
+  const supportButtons = document.querySelectorAll(".footer-support-button");
+
+  supportButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      window.alert("준비 중인 메뉴입니다.");
+    });
+  });
+}
+
 renderFooter();
+initFooterSupportButtons();
