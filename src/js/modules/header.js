@@ -18,7 +18,7 @@ function renderHeader() {
         focus:translate-y-0
       "
     >
-      컨텐츠로 바로가기
+      본문 바로가기
     </a>
 
     <div
@@ -73,7 +73,7 @@ function renderHeader() {
               <path d="M4 17h16"></path>
             </svg>
 
-            <span class="visually-hidden">메뉴 열기</span>
+            <span class="sr-only">메뉴 열기</span>
           </button>
 
           <a
@@ -557,7 +557,7 @@ function renderHeader() {
               <path d="M18 6 6 18"></path>
             </svg>
 
-            <span class="visually-hidden">메뉴 닫기</span>
+            <span class="sr-only">메뉴 닫기</span>
           </button>
         </div>
 
@@ -920,10 +920,15 @@ function initMobileCollection() {
 
 function initMobileMenu() {
   const openButton = document.querySelector(".site-menu-open");
+
   const closeButton = document.querySelector(".site-menu-close");
+
   const backdrop = document.querySelector(".site-menu-backdrop");
+
   const menu = document.querySelector(".site-mobile-menu");
+
   const panel = document.querySelector(".site-mobile-panel");
+
   const main = document.querySelector("main");
   const footer = document.querySelector("footer");
 
@@ -982,7 +987,9 @@ function initMobileMenu() {
   }
 
   openButton.addEventListener("click", openMenu);
+
   closeButton.addEventListener("click", closeMenu);
+
   backdrop.addEventListener("click", closeMenu);
 
   document.addEventListener("keydown", event => {

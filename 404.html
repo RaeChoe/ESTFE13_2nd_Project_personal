@@ -1,24 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico" sizes="any">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="페이지를 찾을 수 없습니다">
-    <title>페이지를 찾을 수 없습니다</title>
+
+    <title>페이지를 찾을 수 없습니다 — ROUNZ</title>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+
     <script type="module" src="./src/js/pages/404.js"></script>
   </head>
+
   <body>
     <header class="site__header"></header>
-    <main id="content" class="error__page">
-      <div class="wrapper">
-        <h1 class="error__heading text-display-large">404</h1>
-        <div class="error__actions">
-          <a href="/">홈으로 가기</a>
-          <a href="/productList.html">상품 둘러보기</a>
+
+    <main
+      id="content"
+      class="
+        flex
+        min-h-[calc(100vh-5rem)]
+        items-center
+        justify-center
+      "
+    >
+      <section
+        class="
+          site-container
+          py-20
+          text-center
+        "
+        aria-labelledby="error-title"
+      >
+        <p
+          class="
+            m-0
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.18em]
+            text-muted
+          "
+        >
+          PAGE NOT FOUND
+        </p>
+
+        <h1
+          id="error-title"
+          class="
+            mb-0
+            mt-4
+            text-[clamp(5rem,14vw,10rem)]
+            font-medium
+            leading-none
+            tracking-[-0.07em]
+          "
+        >
+          404
+        </h1>
+
+        <p
+          class="
+            mx-auto
+            mb-0
+            mt-6
+            max-w-md
+            text-sm
+            leading-7
+            text-muted
+          "
+        >
+          요청하신 페이지를 찾을 수 없습니다. 주소를 다시 확인하거나 다른 상품을
+          둘러보세요.
+        </p>
+
+        <div
+          class="
+            mt-9
+            flex
+            flex-col
+            justify-center
+            gap-3
+            sm:flex-row
+          "
+        >
+          <a
+            href="/"
+            class="
+              inline-flex
+              min-h-13
+              items-center
+              justify-center
+              border
+              border-ink
+              bg-ink
+              px-7
+              text-sm
+              font-semibold
+              text-white
+              no-underline
+              transition-colors
+              hover:border-plum-700
+              hover:bg-plum-700
+            "
+          >
+            홈으로 가기
+          </a>
+
+          <a
+            href="/productList.html"
+            class="
+              inline-flex
+              min-h-13
+              items-center
+              justify-center
+              border
+              border-ink
+              bg-transparent
+              px-7
+              text-sm
+              font-semibold
+              text-ink
+              no-underline
+              transition-colors
+              hover:bg-ink
+              hover:text-white
+            "
+          >
+            상품 둘러보기
+          </a>
         </div>
-      </div>
+      </section>
     </main>
+
     <footer class="site__footer"></footer>
   </body>
 </html>
